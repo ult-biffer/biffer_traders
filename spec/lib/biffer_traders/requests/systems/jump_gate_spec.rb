@@ -1,0 +1,9 @@
+require "rails_helper"
+
+RSpec.describe ::BifferTraders::Requests::Systems::JumpGate do
+  subject { described_class.new(waypoint_symbol: "X1-AA-AAAA") }
+
+  it "should set the proper values" do
+    expect(subject.instance_variable_get(:@uri)).to eq("#{::BifferTraders::BASE_URL}/systems/X1-AA/waypoints/X1-AA-AAAA/jump-gate")
+  end
+end
