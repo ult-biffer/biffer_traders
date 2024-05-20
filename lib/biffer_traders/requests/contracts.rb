@@ -24,7 +24,7 @@ module BifferTraders
 
       class Deliver < ::BifferTraders::Requests::Authenticated
         def initialize(id, ship_symbol:, trade_symbol:, units:)
-          json = { ship_symbol:, trade_symbol:, units: }
+          json = {ship_symbol:, trade_symbol:, units:}
           super("POST", "/my/contracts/#{id}/deliver", json:)
         end
       end

@@ -4,8 +4,8 @@ module BifferTraders
   module Requests
     class RegisterAgent < Base
       def initialize(symbol:, faction: "COSMIC")
-        json = { symbol:, faction: }
-        super("POST", "/register", { json: })
+        json = {symbol:, faction:}
+        super("POST", "/register", {json:})
       end
     end
   end

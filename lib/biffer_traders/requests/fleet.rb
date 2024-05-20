@@ -5,8 +5,8 @@ module BifferTraders
   module Requests
     module Fleet
       # Shared Ship class
-      private class Ship < ::BifferTraders::Requests::Authenticated
-        def initialize(verb, symbol, path = "", options = Hash.new)
+      class Ship < ::BifferTraders::Requests::Authenticated
+        def initialize(verb, symbol, path = "", options = {})
           uri = "/my/ships/#{symbol}#{path}"
           super(verb, uri, options)
         end
@@ -20,7 +20,7 @@ module BifferTraders
 
       class PurchaseShip < ::BifferTraders::Requests::Authenticated
         def initialize(ship_type:, waypoint_symbol:)
-          json = { ship_type:, waypoint_symbol: }
+          json = {ship_type:, waypoint_symbol:}
           super("POST", "/my/ships", json:)
         end
       end
@@ -45,13 +45,13 @@ module BifferTraders
 
       class InstallMount < Ship
         def initialize(ship_symbol:, symbol:)
-          super("POST", ship_symbol, "/mounts/install", json: { symbol: })
+          super("POST", ship_symbol, "/mounts/install", json: {symbol:})
         end
       end
 
       class RemoveMount < Ship
         def initialize(ship_symbol:, symbol:)
-          super("POST", ship_symbol, "/mounts/remove", json: { symbol: })
+          super("POST", ship_symbol, "/mounts/remove", json: {symbol:})
         end
       end
 
@@ -63,7 +63,7 @@ module BifferTraders
 
       class Refine < Ship
         def initialize(symbol:, produce:)
-          super("POST", symbol, "/refine", json: { produce: })
+          super("POST", symbol, "/refine", json: {produce:})
         end
       end
 
@@ -111,26 +111,26 @@ module BifferTraders
 
       class Jettison < Ship
         def initialize(ship_symbol:, cargo_symbol:, units:)
-          json = { symbol: cargo_symbol, units: }
+          json = {symbol: cargo_symbol, units:}
           super("POST", ship_symbol, "/jettison", json:)
         end
       end
 
       class Jump < Ship
         def initialize(ship_symbol:, waypoint_symbol:)
-          super("POST", ship_symbol, "/jump", json: { waypoint_symbol: })
+          super("POST", ship_symbol, "/jump", json: {waypoint_symbol:})
         end
       end
 
       class Navigate < Ship
         def initialize(ship_symbol:, waypoint_symbol:)
-          super("POST", ship_symbol, "/navigate", json: { waypoint_symbol: })
+          super("POST", ship_symbol, "/navigate", json: {waypoint_symbol:})
         end
       end
 
       class PatchNav < Ship
         def initialize(symbol:, flight_mode: "CRUISE")
-          super("PATCH", symbol, "/nav", json: { flight_mode: })
+          super("PATCH", symbol, "/nav", json: {flight_mode:})
         end
       end
 
@@ -142,32 +142,32 @@ module BifferTraders
 
       class Warp < Ship
         def initialize(ship_symbol:, waypoint_symbol:)
-          super("POST", ship_symbol, "/warp", json: { waypoint_symbol: })
+          super("POST", ship_symbol, "/warp", json: {waypoint_symbol:})
         end
       end
 
       class Sell < Ship
         def initialize(ship_symbol:, symbol:, units:)
-          super("POST", ship_symbol, "/sell", json: { symbol:, units: })
+          super("POST", ship_symbol, "/sell", json: {symbol:, units:})
         end
       end
 
       class Purchase < Ship
         def initialize(ship_symbol:, symbol:, units:)
-          super("POST", ship_symbol, "/purchase", json: { symbol:, units: })
+          super("POST", ship_symbol, "/purchase", json: {symbol:, units:})
         end
       end
 
       class Transfer < Ship
         def initialize(from_symbol:, trade_symbol:, ship_symbol:, units:)
-          json = { trade_symbol:, ship_symbol:, units: }
+          json = {trade_symbol:, ship_symbol:, units:}
           super("POST", from_symbol, "/transfer", json:)
         end
       end
 
       class Refuel < Ship
         def initialize(symbol:, units:, from_cargo:)
-          super("POST", symbol, "/refuel", json: { units:, from_cargo: })
+          super("POST", symbol, "/refuel", json: {units:, from_cargo:})
         end
       end
 
@@ -201,7 +201,7 @@ module BifferTraders
         end
       end
 
-      private class Scan < Ship
+      class Scan < Ship
         def initialize(ship_symbol, path)
           super("POST", ship_symbol, "/scan#{path}")
         end

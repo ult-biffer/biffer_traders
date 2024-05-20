@@ -3,13 +3,13 @@ require "httpx"
 module BifferTraders
   module Requests
     class Base
-      def initialize(verb, uri, options = Hash.new)
-        @verb    = verb.upcase
-        @uri     = "#{::BifferTraders::BASE_URL}#{uri}"
+      def initialize(verb, uri, options = {})
+        @verb = verb.upcase
+        @uri = "#{::BifferTraders::BASE_URL}#{uri}"
         @options = options
 
         @options[:params] = spaceify(@options[:params])
-        @options[:json]   = spaceify(@options[:json])
+        @options[:json] = spaceify(@options[:json])
       end
 
       def execute

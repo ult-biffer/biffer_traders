@@ -34,8 +34,8 @@ module BifferTraders
       end
 
       class Waypoints < ::BifferTraders::Requests::Paginated
-        def initialize(symbol:, page: 1, options: Hash.new)
-          filters = { traits: options[:traits], type: options[:type] }.reject { |_, v| v.nil? }
+        def initialize(symbol:, page: 1, options: {})
+          filters = {traits: options[:traits], type: options[:type]}.reject { |_, v| v.nil? }
           super(SystemPath.new(system_symbol: symbol, path: "/waypoints").to_s, page, params: filters)
         end
       end
@@ -73,7 +73,7 @@ module BifferTraders
       class SupplyConstruction < ::BifferTraders::Requests::Authenticated
         def initialize(waypoint_symbol:, ship_symbol:, trade_symbol:, units:)
           path = SystemPath.new(path: "/construction/supply", waypoint_symbol:)
-          json = { ship_symbol:, trade_symbol:, units: }
+          json = {ship_symbol:, trade_symbol:, units:}
 
           super("POST", path.to_s, json:)
         end

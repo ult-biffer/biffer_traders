@@ -1,14 +1,14 @@
 require_relative "lib/biffer_traders/version"
 
 Gem::Specification.new do |spec|
-  spec.name        = "biffer_traders"
-  spec.version     = BifferTraders::VERSION
-  spec.authors     = ["Ult Biffer"]
-  spec.email       = [""]
-  spec.homepage    = "https://github.com/ult-biffer/biffer_traders"
-  spec.summary     = "Summary of BifferTraders."
+  spec.name = "biffer_traders"
+  spec.version = BifferTraders::VERSION
+  spec.authors = ["Ult Biffer"]
+  spec.email = [""]
+  spec.homepage = "https://github.com/ult-biffer/biffer_traders"
+  spec.summary = "Summary of BifferTraders."
   spec.description = "Description of BifferTraders."
-  spec.license     = "MIT"
+  spec.license = "MIT"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
@@ -23,5 +23,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "rspec-rails"
   spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "standard"
   spec.add_development_dependency "solargraph", ">= 0.50.0"
 end
