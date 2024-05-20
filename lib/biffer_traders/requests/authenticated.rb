@@ -5,10 +5,14 @@ module BifferTraders
   module Requests
     class Authenticated < Base
       def initialize(verb, uri, options = {})
-        raise ArgumentError.new("Must supply a token!") if ENV["BIFFER_TRADERS_TOKEN"].nil? || ENV["BIFFER_TRADERS_TOKEN"].blank?
-        options[:headers] = {Authorization: "Bearer #{ENV["BIFFER_TRADERS_TOKEN"]}"}
+        token = ::BifferTraders::Config[:token]
+        raise ArgumentError.new("Must supply a token!") if token.nil? || token.blank?
 
         super
+      end
+
+      def http_session
+        HTTPX.plugin(:auth).bearer_auth(::BifferTraders::Config[:token])
       end
     end
   end

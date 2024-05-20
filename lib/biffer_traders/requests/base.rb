@@ -13,12 +13,16 @@ module BifferTraders
       end
 
       def execute
-        response = ::HTTPX::Session.new.wrap do |http|
+        response = http_session.wrap do |http|
           request = http.build_request(@verb, @uri, @options)
           http.request(request)
         end
 
         [response.status, railsify(JSON.parse(response.body.read))]
+      end
+
+      def http_session
+        ::HTTPX::Session.new
       end
 
       def railsify(h)
