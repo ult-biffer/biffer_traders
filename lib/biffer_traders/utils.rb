@@ -1,7 +1,9 @@
+require "biffer_traders/types/location_symbol"
+
 module BifferTraders
   class Utils
     def self.system_from_waypoint(waypoint)
-      waypoint.split("-")[0..-2].join("-")
+      ::BifferTraders::Types::LocationSymbol.new(waypoint).system_string
     end
   end
 end

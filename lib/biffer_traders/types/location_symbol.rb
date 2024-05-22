@@ -38,7 +38,7 @@ module BifferTraders
       end
 
       def system_valid?
-        system_part.length == 4
+        system_part.present?
       end
 
       def is_valid_size?
